@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import ReactDOM from "react-dom/client";
+import React, {useEffect, useState} from 'react';
+import Post from "../Post/Post";
 
-function Post() {
 
+
+function Home() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [postList, setPostList] = useState([]);
@@ -27,25 +28,19 @@ function Post() {
 
     if (error) {
         return <div>Error: {error.message}</div>;
-    }
-    else if (!isLoaded) {
+    } else if (!isLoaded) {
         return <div>Loading...</div>;
-    }
-    else {
+    } else {
         return (
-            <div>
-                <h1>Posts</h1>
-                <ul>
-                    {postList.map(post => (
-                        <li key={post.id}>
-                            <h2>{post.title}</h2>
-                            <p>{post.text}</p>
-                        </li>
-                    ))}
-                </ul>
+            <div className="container">
+                <h1>Home</h1>
+                {postList.map(post => (
+                    <Post key={post.id} title={post.title} text={post.text}/>
+                ))}
             </div>
+
         );
     }
 }
 
-export default Post;
+export default Home;
